@@ -1,0 +1,66 @@
+CREATE TABLE `t_users` (
+ `UserID` int(11) NOT NULL AUTO_INCREMENT,
+ `UserName` text COLLATE utf16_persian_ci NOT NULL,
+ `CreateOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ `IsActive` bit(1) NOT NULL DEFAULT b'1',
+ PRIMARY KEY (`UserID`),
+ UNIQUE KEY `UserName_Index` (`UserName`(20))
+ ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf16 COLLATE=utf16_persian_ci
+
+
+
+ CREATE TABLE `t_share` (
+ `ShareID` int(11) NOT NULL AUTO_INCREMENT,
+ `ShareCode` text COLLATE utf16_persian_ci NOT NULL,
+ `LastPrice` decimal(10,2) NOT NULL DEFAULT '0.00',
+ `ChangeOn` datetime DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY (`ShareID`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf16 COLLATE=utf16_persian_ci
+
+
+
+
+ CREATE TABLE `t_tradingtype` (
+ `TradingTypeID` int(1) NOT NULL,
+ `TradingTypeName` text COLLATE utf16_persian_ci NOT NULL,
+ PRIMARY KEY (`TradingTypeID`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_persian_ci
+
+
+ CREATE TABLE `t_usertrading` (
+ `UserTradingID` int(11) NOT NULL AUTO_INCREMENT,
+ `UserID` int(11) NOT NULL,
+ `ShareID` int(11) NOT NULL,
+ `TradingTypeID` int(11) NOT NULL,
+ `TradingPrice` decimal(10,0) NOT NULL,
+ `TradeOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ `QTY` int(11) NOT NULL,
+ PRIMARY KEY (`UserTradingID`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_persian_ci
+
+
+ 
+
+CREATE TABLE `t_userportfolio` (
+ `UserPortfolioID` int(11) NOT NULL AUTO_INCREMENT,
+ `UserID` int(11) NOT NULL,
+ `ShareID` int(11) NOT NULL,
+ `QTY` int(11) NOT NULL DEFAULT '0',
+ PRIMARY KEY (`UserPortfolioID`),
+ KEY `UserID` (`UserID`),
+ KEY `ShareID` (`ShareID`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_persian_ci 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
